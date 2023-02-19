@@ -63,7 +63,8 @@ const AddRestaurant = () => {
           <button
             type="submit"
             onClick={handleSubmit}
-            className="bg-blue-500 hover:bg-blue-400 rounded-lg py-2 px-8 cursor-pointer "
+            className="bg-blue-500 rounded-lg py-2 px-8 cursor-pointer shadow-md disabled:opacity-60 disabled:cursor-auto"
+            disabled={!name ||!location}
           >
             Add
           </button>

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import RestaurantFinder from "../api/RestaurantFinder";
 import { RestaurantsContext } from "../context/RestaurantsContext";
 import StarRating from '../components/StarRating';
-const RestaurantList = (props) => {
+const RestaurantList = () => {
   const { restaurants, setRestaurants } = useContext(RestaurantsContext);
   let navigate = useNavigate();
 

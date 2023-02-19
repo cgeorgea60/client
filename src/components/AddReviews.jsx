@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import RestaurantFinder from "../api/RestaurantFinder";
+import { IoReturnUpBackSharp } from "react-icons/io5";
 
 const AddReviews = () => {
+  const navigate = useNavigate();
 
   const { id } = useParams();
   const [name, setName] = useState("");
@@ -15,18 +17,21 @@ const AddReviews = () => {
       await RestaurantFinder.post(`/${id}/review`, {
         name,
         review: reviewText,
-        rating
-      })
+        rating,
+      });
       setName("");
       setRating("Rating");
       setReviewText("");
-     
-      window.location.reload();// Instantly reloads the page.
-      
+
+      window.location.reload(); // Instantly reloads the page.
     } catch (error) {
       console.log(error);
     }
-  }
+  };
+
+  const handleClick = () => {
+    navigate("/");
+  };
   return (
     <div className="mb-2">
       <form action="">
@@ -76,11 +81,22 @@ const AddReviews = () => {
           ></textarea>
         </div>
         <div className="flex flex-start">
-          <button onClick={handleReviewSubmit}  type="submit" className="btn bg-blue-500 px-4 py-2 rounded-md cursor-pointer hover:bg-blue-600 my-4 ml-0 text-blue-300 hover:text-blue-100 ">
+          <button
+            onClick={handleReviewSubmit}
+            type="submit"
+            className="btn bg-blue-500 px-4 py-2 rounded-md cursor-pointer hover:bg-blue-600 my-4 ml-0 text-blue-300 hover:text-blue-100 "
+          >
             Submit
           </button>
         </div>
       </form>
+
+      <button
+        onClick={handleClick}
+        className="btn border py-2 px-10 rounded-md bg-yellow-500 hover:bg-yellow-400 shadow-md cursor-pointer "
+      >
+        <IoReturnUpBackSharp className="text-4xl text-gray-50" />
+      </button>
     </div>
   );
 };
